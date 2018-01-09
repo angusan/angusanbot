@@ -16,8 +16,7 @@
 		);
 
  $myfile = fopen("log.txt","w+") or die("Unable to open file!"); //設定一個log.txt 用來印訊息
- $response_str = json_encode($response)
- fwrite($myfile, "\xEF\xBB\xBF".$response_str); //在字串前加入\xEF\xBB\xBF轉成utf8格式
+ fwrite($myfile, "\xEF\xBB\xBF".$response); //在字串前加入\xEF\xBB\xBF轉成utf8格式
  fclose($myfile);
 
  //回傳給line server
@@ -25,7 +24,7 @@
  $header[] = "Authorization: Bearer OWBhh1ZaY04jmRRWONkvglSiSPBZo5EdKzj3Btn/1bcPrYFwSbSh2+Jeeo3vyyeDLiZP6ANrW0Wfe1M+UhxsZ6H8ZYYI1IZFOtRl4eGHJpep9odRsGxLOsiyQAK4MCfqlkX8ChXvkBzc11eUQhgcuAdB04t89/1O/w1cDnyilFU=";
  $ch = curl_init("https://api.line.me/v2/bot/message/push");                                                                      
  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
- curl_setopt($ch, CURLOPT_POSTFIELDS, $response_str);                                                                  
+ curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($response));                                                                  
  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);                                                                      
  curl_setopt($ch, CURLOPT_HTTPHEADER, $header);                                                                                                   
  $result = curl_exec($ch);
