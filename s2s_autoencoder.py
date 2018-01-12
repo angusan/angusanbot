@@ -44,7 +44,7 @@ def parseTextCorpus(data_path):
 
     return corpus_meta
 
-corpus_meta = parseTextCorpus('data/intent.txt')
+corpus_meta = parseTextCorpus('intent.txt')
 num_tokens = len(corpus_meta.get("characters_dict"))
 max_sentence_length = max([len(txt) for txt in corpus_meta.get("input_texts")])
 num_intents = len(corpus_meta.get("intent_dict"))
